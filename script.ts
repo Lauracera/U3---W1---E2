@@ -11,8 +11,9 @@ class SonAccount {
         return this.balanceInit
     }
 
-    oneDrow(prevelievo: number) {
-        this.balanceInit = this.balanceInit - prevelievo;
+    oneDrow(prelievo: number) {
+        this.balanceInit = this.balanceInit - prelievo;
+        console.log("Prelievo: " + prelievo)
 
         return this.balanceInit
     }
@@ -29,20 +30,29 @@ class MotherAccount extends SonAccount {
     }
 
     addinterest() {
-        this.balanceInit += this.balanceInit * 0.1;
+        this.balanceInit -= this.balanceInit * 0.1;
+        return this.balanceInit
+        
     }
 }
 
-let saldoSon = new SonAccount(0, 0)
+let saldoSon = new SonAccount(0, 0);
 console.log(saldoSon);
 console.log("Deposito: " + saldoSon.oneDeposit(+1000));
-console.log("Saldo finale: " + saldoSon.oneDrow(-200));
-console.log()
+console.log("Saldo finale: " + saldoSon.oneDrow(200));
+console.log("Saldo finale: " + saldoSon.oneDrow(200));
+
 
 
 
 let saldoMother = new MotherAccount(0, 0)
+
 console.log(saldoMother)
+console.log("Deposito: " + saldoMother.oneDeposit(+1000));
+// console.log("Saldo finale1: " + (saldoMother.oneDrow(200)-  saldoMother.addinterest()) );
+
+console.log("Saldo senza interessi: " + saldoMother.oneDrow(200));
+console.log("Saldo finale: " + saldoMother.addinterest());
 
 
 

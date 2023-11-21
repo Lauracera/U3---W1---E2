@@ -24,8 +24,9 @@ var SonAccount = /** @class */ (function () {
         this.balanceInit = this.balanceInit + deposito;
         return this.balanceInit;
     };
-    SonAccount.prototype.oneDrow = function (prevelievo) {
-        this.balanceInit = this.balanceInit - prevelievo;
+    SonAccount.prototype.oneDrow = function (prelievo) {
+        this.balanceInit = this.balanceInit - prelievo;
+        console.log("Prelievo: " + prelievo);
         return this.balanceInit;
     };
     return SonAccount;
@@ -42,13 +43,19 @@ var MotherAccount = /** @class */ (function (_super) {
         return _this;
     }
     MotherAccount.prototype.addinterest = function () {
-        this.balanceInit += this.balanceInit * 0.1;
+        this.balanceInit -= this.balanceInit * 0.1;
+        return this.balanceInit;
     };
     return MotherAccount;
 }(SonAccount));
 var saldoSon = new SonAccount(0, 0);
 console.log(saldoSon);
+console.log("Deposito: " + saldoSon.oneDeposit(+1000));
+console.log("Saldo finale: " + saldoSon.oneDrow(200));
+console.log("Saldo finale: " + saldoSon.oneDrow(200));
 var saldoMother = new MotherAccount(0, 0);
 console.log(saldoMother);
-var deposito = new SonAccount(1000, 500);
-console.log(deposito.oneDeposit);
+console.log("Deposito: " + saldoMother.oneDeposit(+1000));
+// console.log("Saldo finale1: " + (saldoMother.oneDrow(200)-  saldoMother.addinterest()) );
+console.log("Saldo senza interessi: " + saldoMother.oneDrow(200));
+console.log("Saldo finale: " + saldoMother.addinterest());
